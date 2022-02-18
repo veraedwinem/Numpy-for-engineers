@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-N=3;
+N=4;
 amp=((2**N)/2);
 f=1/6;
 
@@ -26,7 +26,6 @@ plt.figure(1)
 plt.plot(x,h(x),label='Senal')
 plt.xlabel('Tiempo')
 plt.ylabel('Amplitud')
-plt.title('Redondeo al mas Cercano')
 plt.grid()
 plt.legend()
 
@@ -37,6 +36,14 @@ plt.step(x,y, label='Muestreada')  # Graficacion de la señal escalonada
 error=h(x)-y;
 
 plt.plot(x,error, label='Error') #Graficación del error
+
+snr=20*np.log10(amp/np.max((np.abs(error))));  ##Adquisicion del SNR
+snr=np.fix(snr); #Redondeo del SNR
+
+snr=str(snr); #Conversion a string
+bits=str(N);  #Conversion a string
+
+plt.title('Redondeo al mas Cercano Nbits:'+ bits + '  SNR: '+ snr) ##Impresion de strings en el titulo
 
 # ------------------Redondeo haia abajo----------------------------------
 
@@ -57,6 +64,14 @@ error=h(x)-z;
 
 plt.plot(x,error, label='Error')  #Graficacion del error
 
+snr=20*np.log10(amp/np.max((np.abs(error))));  ##Adquisicion del SNR
+snr=np.fix(snr); #Redondeo del SNR
+
+snr=str(snr); #Conversion a string
+bits=str(N);  #Conversion a string
+
+plt.title('Redondeo al mas Cercano Nbits:'+ bits + '  SNR: '+ snr) ##Impresion de strings en el titulo
+
 # ------------------Redondeo haia arriba----------------------------------
 
 plt.figure(3)
@@ -74,5 +89,15 @@ plt.step(x,w,label='Muestreada')  # Graficacion de la señal escalonada
 error=h(x)-w;
 
 plt.plot(x,error, label='Error')  #Graficacion del error
+
+snr=20*np.log10(amp/np.max((np.abs(error))));  ##Adquisicion del SNR
+snr=np.fix(snr); #Redondeo del SNR
+
+snr=str(snr); #Conversion a string
+bits=str(N);  #Conversion a string
+
+plt.title('Redondeo al mas Cercano Nbits:'+ bits + '  SNR: '+ snr) ##Impresion de strings en el titulo
+
+
 
 
